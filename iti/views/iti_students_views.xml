@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+
+
+
+        <record id="students_view_tree" model="ir.ui.view">
+            <field name="name">students_view_tree</field>
+            <field name="model">iti.students</field>
+            <field name="arch" type="xml">
+                <tree string="students_tree">
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="accepted"/>
+                </tree>
+            </field>
+        </record>
+<!--        use it to enter data to the database - every thing is a record -->
+<!-- insert into it.actions.act_window(name,res_model, view_model) values -->
+<!--        ()-->
+        <record id="iti_students_action" model="ir.actions.act_window">
+            <field name="name">Student</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">iti.students</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+<!--        <record id="_action" model="ir.actions.act_window">-->
+<!--            <field name="name"></field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model"></field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+<!--        menu without parent or action the main menu-->
+        <menuitem id="iti_root_menu" name="ITI"/>
+        <menuitem id="iti_data_menu" name="Data" parent="iti_root_menu"/>
+        <menuitem id="iti_student_menu" name="Students"
+                  action="iti_students_action"
+                  parent="iti_data_menu"/>
+
+
+    </data>
+</odoo>

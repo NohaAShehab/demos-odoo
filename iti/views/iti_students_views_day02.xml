@@ -1,0 +1,110 @@
+<odoo>
+    <data>
+        <record id="iti_students_view_form" model="ir.ui.view">
+            <field name="name">iti_students_view_form</field>
+            <field name="model">iti.students</field>
+            <field name="arch" type="xml">
+                <form string="iti_students_form">
+                    <header >
+                        <button string="To the next level" type="object" name="to_next"
+                            attrs ="{'invisible':[('state','=','rejected')]}"
+                        />
+                        <field name="state"  widget="statusbar"/>
+                        <button string="To the previous level" type="object"
+                                 attrs ="{'invisible':[('state','=','new')]}"
+                                name="to_prev"/>
+                    </header>
+                    <sheet>
+                         <button name="%(iti_tracks_action)d" type="action" string="Go to tracks"/>
+                        <group>
+                        <group string="data">
+                            <field name="name" required="True"/>
+                            <field name="age" readonly="True"/>
+                            <field name="salary" />
+                            <field name="gender" required="True"/>
+                            <field name="military_certificate"
+                                   attrs="{
+                               'invisible': [('gender', '=', 'f')],
+                               'required': [('gender', '=', 'm'), ('accepted', '=', True) ],
+                                'readonly': [('accepted', '=', True)]}"/>
+                        </group>
+                        <group string="Aditional_info">
+
+                            <field name="image"/>
+                            <field name="accepted"/>
+                            <field name="track_id" domain="[('opened','=', True)]"/>
+                            <field name="track_open"/>
+                            <field name="registeration_at"/>
+                             <field name="skill_ids" />
+                               <field name="info" />
+                             <field name="tax" readonly="True" force_save="True"/>
+                            <field name="computed_tax" />
+
+                        </group>
+                        </group>
+                        <notebook>
+                            <page string="Bio">
+                                <field name="cv"/>
+                            </page>
+                             <page string="CV">
+                                <field name="bio"/>
+                            </page>
+
+                              <page string="Day03 log history">
+                                  <field name="log_history_ids">
+                                      <tree>
+                                          <field name="create_uid"/>
+                                          <field name="create_date"/>
+                                          <field name="description"/>
+                                      </tree>
+
+                                  </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="students_view_tree" model="ir.ui.view">
+            <field name="name">students_view_tree</field>
+            <field name="model">iti.students</field>
+            <field name="arch" type="xml">
+                <tree string="students_tree">
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="accepted"/>
+                </tree>
+            </field>
+        </record>
+<!--        use it to enter data to the database - every thing is a record -->
+<!-- insert into it.actions.act_window(name,res_model, view_model) values -->
+<!--        ()-->
+        <record id="iti_students_action" model="ir.actions.act_window">
+            <field name="name">Student</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">iti.students</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+<!--        <record id="_action" model="ir.actions.act_window">-->
+<!--            <field name="name"></field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model"></field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+<!--        menu without parent or action the main menu-->
+        <menuitem id="iti_root_menu" name="ITI"/>
+        <menuitem id="iti_data_menu" name="Data" parent="iti_root_menu"/>
+        <menuitem id="iti_student_menu" name="Students"
+                  action="iti_students_action"
+                  parent="iti_data_menu"/>
+
+
+    </data>
+</odoo>

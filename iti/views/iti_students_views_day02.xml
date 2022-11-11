@@ -20,7 +20,7 @@
                         <group string="data">
                             <field name="name" required="True"/>
                             <field name="age" readonly="True"/>
-                            <field name="salary" />
+                            <field name="salary" groups="iti.iti_manager_group"/>
                             <field name="gender" required="True"/>
                             <field name="military_certificate"
                                    attrs="{

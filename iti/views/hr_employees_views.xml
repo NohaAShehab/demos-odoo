@@ -11,8 +11,13 @@
                 <field name="coach_id" position="after" >
                     <field name="national_id_number"/>
                 </field>
-                <xpath expr="/form/sheet/group/group/field@['name'='coach_id'" position=""></xpath>
-                <xpath expr="//field@['name'='coach_id'" position=""></xpath>
+                <field name="mobile_phone" position="attributes" >
+                    <attribute name="invisible"> True </attribute>
+                </field>
+
+
+            <!-- Get specific path -->
+<!--                <xpath expr="/form/" position="" />-->
 
             </field>
 

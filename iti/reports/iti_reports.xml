@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <record name="iti_student_card_report" model="ir.actions.report">
+            <field name="model">iti.students</field>
+            <field name="report_name">iti.iti_students_card_report</field>
+            <field name="binding_model_id" ref="iti.model_iti_students"/>
+        </record>
+    </data>
+</odoo>

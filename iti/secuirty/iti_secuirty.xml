@@ -1,0 +1,60 @@
+<odoo>
+    <data noupdate="0">
+
+<!--        <record id="iti_employee_group" model="res.groups">-->
+<!--            <field name="name">Employee</field>-->
+<!--        </record>-->
+<!--          <record id="iti_manager_group" model="res.groups">-->
+<!--            <field name="name">Manager</field>-->
+<!--        </record>-->
+
+        <record id="iti_groups_category" model="ir.module.category">
+            <field name="name">ITI</field>
+        </record>
+
+        <record id="iti_employee_group" model="res.groups">
+            <field name="name">Employee</field>
+            <field name="category_id" ref="iti_groups_category"></field>
+        </record>
+
+        <record id="iti_manager_group" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="iti_groups_category"/>
+            <field name="implied_ids" eval="[(4, ref('iti_employee_group'))]"/>
+        </record>
+
+    <record id="iti_see_own_student" model="ir.rule">
+        <field name="name"> See own students </field>
+        <field ref="model_iti_students" name="model_id"/>
+        <!-- You can attach this rule to a specific group, Or make it Global -->
+        <field name="groups" eval="[(4, ref('iti_employee_group'))]"/>
+        <field name="domain_force" > [("create_uid", '=', user.id)]</field>
+
+        <!--<field name="global" eval="1"/> -->
+    </record>
+
+
+    <record id="iti_see_all_students" model="ir.rule">
+        <field name="name"> See all students </field>
+        <field ref="model_iti_students" name="model_id"/>
+        <!-- You can attach this rule to a specific group, Or make it Global -->
+        <field name="groups" eval="[(4, ref('iti_manager_group'))]"/>
+        <field name="domain_force" > []</field>
+
+        <!--<field name="global" eval="1"/> -->
+    </record>
+
+<!--    global rule-->
+    <record id="iti_global_students" model="ir.rule">
+        <field name="name"> See Global students </field>
+        <field ref="model_iti_students" name="model_id"/>
+        <!-- You can attach this rule to a specific group, Or make it Global -->
+        <field name="domain_force" > []</field>
+        <field name="domain_force" > [("accepted", '=', True)]</field>
+
+        <!-- This rule will be applied on all users  -->
+    </record>
+
+    </data>
+
+</odoo>

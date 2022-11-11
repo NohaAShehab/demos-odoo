@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+employee_student_access,employee_student_access,model_iti_students,iti_employee_group,1,1,1,0
+employee_skill_access,employee_skill_access,model_iti_skills,iti_employee_group,1,0,0,0
+employee_log_history_access,employee_log_history_access,model_iti_log_history,iti_employee_group,1,0,0,0
